@@ -1,0 +1,9 @@
+JSF LOJA PROJECT
+--------------------------------------------------------------------------------
+
+* Projeto básico de uma loja virtual utilizando como frameworks principais JSF 1.2, Spring 3.x e Hibernate 3.5 (JPA2);
+* O projeto tem por objetivo ajudar programadores (e a mim mesmo) a configurar um ambiente com estes 3 frameworks;
+* O design da aplicação foi copiado (e levemente modificado) do projeto vraptor-blank-project da Caelum. Para mais
+	informações acesse http://vraptor.caelum.com.br/en;
+* A idéia principal, além de facilitar a configuração inicial do ambiente, é ir evoluindo a aplicação com features
+	e frameworks interessantes (como prova de conceito) relacionados a estes 3 frameworks;
