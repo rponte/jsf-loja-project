@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/pages/template/template_padrao.jspx">
+	
+	<ui:define name="conteudo">
+		<div id="container">
+			<h1>Cadastro de Produtos</h1>
+			
+			<t:saveState value="#{produtoBean.produtos}" />
+			
+			<h:form>
+				<div>
+					<div align="right">
+						<h:commandLink value="Novo" action="novo_produto" /> &#160;
+						<h:commandButton value="Listar" 
+							action="#{produtoBean.lista}" />	
+					</div>
+					<h:dataTable
+						value="#{produtoBean.produtos}"
+						var="produto"
+						rowClasses="odd, even">
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Codigo"/>
+							</f:facet>
+							<h:outputText value="#{produto.codigo}"/>
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Nome"/>
+							</f:facet>
+							<h:outputText value="#{produto.nome}"/>
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Descricao"/>
+							</f:facet>
+							<h:outputText value="#{produto.descricao}"/>
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Preço"/>
+							</f:facet>
+							<h:outputText value="#{produto.preco}">
+								<f:convertNumber type="number" maxFractionDigits="3" minFractionDigits="2" />
+							</h:outputText>
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Ações"/>
+							</f:facet>
+							<h:commandLink value="editar" action="#{produtoBean.preparaParaAlterar}">
+								<f:setPropertyActionListener value="#{produto}" target="#{produtoBean.produto}"/>
+							</h:commandLink> &#160;	
+							<h:commandLink value="remover" action="#{produtoBean.remove}"
+								onclick="if(!confirm('Deseja realmente remover este produto?')) {return false;}">
+								<f:setPropertyActionListener value="#{produto}" target="#{produtoBean.produto}"/>
+							</h:commandLink>
+						</h:column>
+					</h:dataTable>
+				</div>
+			</h:form>
+		</div>
+	</ui:define>
+	
+</ui:composition>

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<faces-config
+    xmlns="http://java.sun.com/xml/ns/javaee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_1_2.xsd"
+    version="1.2">
+
+	<application>
+		<!-- Spring EL Resolver -->
+		<el-resolver>
+			org.springframework.web.jsf.el.SpringBeanFacesELResolver
+		</el-resolver>
+		<!-- Facelets -->
+		<view-handler>com.sun.facelets.FaceletViewHandler</view-handler>
+		<!-- Internacionalizacao -->
+		<message-bundle>
+	    		br.com.triadworks.loja.resources.Messages
+	    	</message-bundle>
+	    	<locale-config>
+	    		<default-locale>pt_BR</default-locale>
+	    		<supported-locale>pt_BR</supported-locale>
+	    	</locale-config>
+    </application>
+
+	<!--<managed-bean>
+		<managed-bean-name>loginBean</managed-bean-name>
+		<managed-bean-class>
+			br.com.minhaloja.controller.LoginBean
+		</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>usuarioWeb</property-name>
+			<value>#{usuarioWeb}</value>
+		</managed-property>
+		<managed-property>
+			<property-name>usuarioService</property-name>
+			<value>#{usuarioService}</value>
+		</managed-property>
+	</managed-bean>
+	
+	<managed-bean>
+		<managed-bean-name>usuarioWeb</managed-bean-name>
+		<managed-bean-class>
+			br.com.minhaloja.controller.UsuarioWeb
+		</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	
+	<managed-bean>
+		<managed-bean-name>produtoBean</managed-bean-name>
+		<managed-bean-class>
+			br.com.minhaloja.controller.ProdutoBean
+		</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>produtoService</property-name>
+			<value>#{produtoService}</value>
+		</managed-property>
+	</managed-bean>
+	-->
+	
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>login</from-outcome>
+			<to-view-id>/pages/login.jspx</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>/pages/login.jspx</from-view-id>
+		<navigation-case>
+			<from-outcome>home</from-outcome>
+			<to-view-id>/home.jspx</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	
+	<!--<navigation-rule>
+		<from-view-id>/pages/produto/lista.jspx</from-view-id>
+		<navigation-case>
+			<from-outcome>novo_produto</from-outcome>
+			<to-view-id>/pages/produto/novo.jspx</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>/pages/produto/*</from-view-id>
+		<navigation-case>
+			<from-outcome>lista_produtos</from-outcome>
+			<to-view-id>/pages/produto/lista.jspx</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>/pages/produto/lista.jspx</from-view-id>
+		<navigation-case>
+			<from-outcome>altera_produto</from-outcome>
+			<to-view-id>/pages/produto/altera.jspx</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+--></faces-config>

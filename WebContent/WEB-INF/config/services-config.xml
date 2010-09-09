@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<faces-config
+    xmlns="http://java.sun.com/xml/ns/javaee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_1_2.xsd"
+    version="1.2">
+
+	<!-- Com a integração do Spring os managed beans são gerenciados não mais pelo Jsf -->
+
+	<!--<managed-bean>
+		<managed-bean-name>usuarioService</managed-bean-name>
+		<managed-bean-class>
+			br.com.minhaloja.service.impl.UsuarioServiceImpl
+		</managed-bean-class>
+		<managed-bean-scope>application</managed-bean-scope>
+	</managed-bean>
+	
+	<managed-bean>
+		<managed-bean-name>produtoService</managed-bean-name>
+		<managed-bean-class>
+			br.com.minhaloja.service.impl.ProdutoEmMemoriaService
+		</managed-bean-class>
+		<managed-bean-scope>application</managed-bean-scope>
+	</managed-bean>
+	
+--></faces-config>
