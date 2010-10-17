@@ -2,6 +2,7 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="test/unit"/>
+	<classpathentry kind="src" path="test/integration"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.launching.macosx.MacOSXType/JVM 1.6.0 (MacOS X Default)">
 		<attributes>
 			<attribute name="owner.project.facets" value="jst.java"/>
@@ -18,5 +19,6 @@
 	<classpathentry kind="lib" path="lib/build/hamcrest-all-1.2RC3.jar"/>
 	<classpathentry kind="lib" path="lib/build/junit-4.5.jar"/>
 	<classpathentry kind="lib" path="lib/build/mockito-all-1.8.4.jar"/>
+	<classpathentry kind="lib" path="lib/build/dbunit-2.4.8.jar"/>
 	<classpathentry kind="output" path="WebContent/WEB-INF/classes"/>
 </classpath>
