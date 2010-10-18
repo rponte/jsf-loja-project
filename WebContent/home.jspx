@@ -13,7 +13,7 @@
 			<div id="container" style="width: 800px;" align="left">
 				<h1>Home</h1>
 				<span id="welcome">
-					Bem vindo <b>#{usuarioWeb.usuario.login}</b> a Loja da Usix.
+					Bem vindo <b>#{usuarioWeb.usuario.login}</b> a Loja da TriadWorks.
 				</span>
 			</div>
 		</div>
