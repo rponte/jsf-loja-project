@@ -16,4 +16,6 @@ public interface ProdutoService {
 
 	public void altera(Produto produto);
 
+	public List<Produto> busca(String nome);
+
 }

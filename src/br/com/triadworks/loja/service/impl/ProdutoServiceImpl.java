@@ -1,5 +1,6 @@
 package br.com.triadworks.loja.service.impl;
 
+import java.util.Collections;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -35,6 +36,18 @@ public class ProdutoServiceImpl implements ProdutoService {
 
 	public void remove(Produto produto) {
 		entityManager.remove(entityManager.merge(produto));
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<Produto> busca(String nome) {
+		if (nome == null ||
+				"".equals(nome)) {
+			return Collections.EMPTY_LIST;
+		}
+		return entityManager
+			.createQuery("from Produto p where lower(p.nome) like lower(:nome)")
+			.setParameter("nome", "%" + nome + "%")
+			.getResultList();
 	}
 
 }
