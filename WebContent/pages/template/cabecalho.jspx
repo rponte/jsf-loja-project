@@ -28,13 +28,4 @@
 		</div><!-- menuWrap-->
 	</t:div>
 	
-	<a4j:outputPanel ajaxRendered="true">
-		<t:div id="errors">
-			<h:messages infoStyle="display:none;" />
-		</t:div>
-		<t:div id="notice">
-			<h:messages errorStyle="display:none;" />
-		</t:div>
-	</a4j:outputPanel>
-	
 </ui:composition>

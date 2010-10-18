@@ -22,6 +22,15 @@
 		<ui:insert name="cabecalho">
 			<ui:include src="/pages/template/cabecalho.jspx"></ui:include>
 		</ui:insert>
+		
+		<ui:insert name="mensagens">
+			<a4j:outputPanel ajaxRendered="true">
+				<t:div id="mensagens">
+					<h:messages infoClass="notice" errorClass="errors" />
+				</t:div>
+			</a4j:outputPanel>
+		</ui:insert>
+		
 		<div id="contentWrap" align="center">
 			<div id="ajax-loading">
 				<a4j:status layout="block">
