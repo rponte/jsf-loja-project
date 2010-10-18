@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:fmt="http://java.sun.com/jstl/fmt"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	template="/pages/template/template_padrao.jspx">
+	
+	<ui:define name="cabecalho">
+		<ui:include src="/pages/cabecalho_busca.jspx" />
+	</ui:define>
+	
+	<ui:define name="conteudo">
+	
+		<!-- Mantém o resultado da busca "viva" por mais de um request -->
+		<t:saveState value="#{buscaDeProdutosBean.resultado}" />
+		
+		<div align="center">
+			<div id="container" style="width: 800px;" align="left">
+				<h:form id="form" prependId="false" >
+				
+					<div id="busca" class="pesquisa_de_produto">
+						<h:inputText id="produto" label="Nome do Produto" value="#{buscaDeProdutosBean.nome}" />	
+						<h:commandButton id="pesquisa" value="Pesquisar" action="#{buscaDeProdutosBean.busca}" />
+					</div>
+					
+					<br clear="all"/>
+					
+					<div class="resultado_busca">
+						<h:dataTable
+							id="tabela_de_produtos"
+							value="#{buscaDeProdutosBean.resultado}"
+							var="produto"
+							rowClasses="odd, even">
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="Nome"/>
+								</f:facet>
+								<h:outputText value="#{produto.nome}"/>
+							</h:column>
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="Descricao"/>
+								</f:facet>
+								<h:outputText value="#{produto.descricao}"/>
+							</h:column>
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="Preço"/>
+								</f:facet>
+								<h:outputText value="#{produto.preco}">
+									<f:convertNumber type="currency" maxFractionDigits="3" minFractionDigits="2" />
+								</h:outputText>
+							</h:column>
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="Comprar"/>
+								</f:facet>
+								<!-- Bug do Mojarra, tanto para h:form como t:subform -->
+								<!--
+								<t:subform id="subformId">
+									<h:inputText id="qtd" value="{carrinhoDeComprasBean.quantidade}" />
+									<t:commandButton value="comprar" 
+										action="{carrinhoDeComprasBean.adiciona}">
+										<f:setPropertyActionListener value="#{produto}" target="{carrinhoDeComprasBean.produto}"/>
+									</t:commandButton> &#160;
+								</t:subform>
+								-->
+								<a4j:region id="subformId">
+									<h:inputText id="qtd" label="Quantidade" 
+										value="#{carrinhoDeComprasBean.quantidade}"
+										required="true">
+										<f:validateLongRange minimum="1" maximum="100" />
+									</h:inputText>
+									<a4j:commandButton value="comprar" 
+										action="#{carrinhoDeComprasBean.adiciona}">
+										<f:setPropertyActionListener value="#{produto}" target="#{carrinhoDeComprasBean.produto}"/>
+									</a4j:commandButton> &#160;
+								</a4j:region>	
+							</h:column>
+						</h:dataTable>
+					</div>
+				</h:form>
+			</div>
+		</div>
+	</ui:define>
+	
+</ui:composition>

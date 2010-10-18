@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:fmt="http://java.sun.com/jstl/fmt"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+	
+	<div id="header">
+		<div id="carrinho">
+			<h3>
+				<a href="#{ctx}/pages/carrinho.faces">Meu carrinho</a>:
+			</h3>
+			<h:panelGroup rendered="#{empty carrinho.itens}">
+				<span>Você não possui itens no seu carrinho</span>
+			</h:panelGroup>
+			<h:panelGroup rendered="#{not empty carrinho.itens}">
+				<ul>
+					<li><strong>Itens:</strong> #{carrinho.totalDeItens}</li>
+					<li>
+						<strong>Total:</strong>
+						<h:outputText value="#{carrinho.total}">&#160;
+							<f:convertNumber type="currency" maxFractionDigits="3" minFractionDigits="2" />
+						</h:outputText>
+					</li>
+				</ul>
+			</h:panelGroup>
+		</div>
+	</div>
+	
+</ui:composition>
