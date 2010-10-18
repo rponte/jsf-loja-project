@@ -4,6 +4,10 @@
 	width: 800px;
 }
 
+a {
+	color: navy;
+}
+
 #ajax-loading {
 	float: right;
 	margin-right: 20px;
@@ -29,6 +33,53 @@ input, select, textarea {
 
 input[disabled] {
 	background-color: #ddd;
+}
+
+.resultado_busca a {
+	color: navy;
+}
+
+.resultado_busca input[type="text"] {
+	display: inline;
+	text-align: left;
+	width: 25px;
+	padding: 0;
+	font-size: 12px;
+	height: 12px;
+	margin-top: 3px;
+	margin-bottom: 3px;
+}
+
+.resultado_busca input[type="submit"] {
+	border: 1px solid #ccc;
+	font-size: 12px;
+	padding: 0;
+	margin-left: 3px;
+	color: #444;
+	width: auto;
+	display: inline;
+}
+.resultado_busca input[type="button"] {
+	border: 1px solid #ccc;
+	font-size: 12px;
+	padding: 0;
+	margin-left: 3px;
+	color: #444;
+	width: auto;
+	display: inline;
+}
+
+.pesquisa_de_produto {
+	padding: 10px 0 10px 0;
+}
+
+.pesquisa_de_produto input[type="text"] {
+	width: 640px;
+	padding: 5px 8px;
+	margin-right: 10px;
+    height: 36px;
+    font-size: 28px;
+    display: inline;
 }
 
 /* login page */
@@ -70,27 +121,6 @@ input[type="button"] {
 	display: inline;
 }
 
-/** Tela de Monitoramento */
-
-#monitoramento fieldset {
-	width: 100%;
-	margin: 15px auto 0;
-	border:1px solid #a29bc0;
-	padding: 10px;
-}
-
-#monitoramento input {
-	width: auto;
-}
-#monitoramento label {
-	width: auto;
-}
-#monitoramento select {
-	width: auto;
-}
-#monitoramento div.lado_a_lado {
-}
-
 fieldset {
 	width: 300px;
 	margin: 15px auto 0;
@@ -100,7 +130,50 @@ fieldset {
 code *, pre * {
 	font-family: monospace;
 }
+
 *{margin:0px; padding:0px; font-family:Arial, Helvetica, sans-serif;}
+
+#header {
+	height: 100px;
+	background-color: navy;
+}
+#carrinho {
+	text-align: left;
+	height: 80px;
+	background-color: #dcdee0;
+	width: 300px;
+	margin: 10px;
+	float: right;
+	border: 1px solid gray;
+	-moz-border-radius: 10px;
+}
+
+#carrinho h3 a {
+	color: navy;
+}
+#carrinho h3 {
+	margin: 10px;
+}
+#carrinho span {
+	margin: 10px;	
+}
+#carrinho ul {
+	list-style: none;
+	padding-left: 10px;
+}
+#carrinho li {
+	float: left;
+	margin-right: 20px;	
+}
+
+.carrinho_vazio {
+	text-align: center;
+}
+
+.carrinho_vazio a {
+	color: navy;
+}
+
 body{
 	background-color:#2a2948; 
 	text-align:center;}
@@ -110,6 +183,15 @@ h1 {
 	margin: 0 auto 20px;
 	text-align: left;
 	border-bottom: 1px black solid;
+}
+
+.coluna_branca {
+	background-color: white;
+}
+
+.coluna_total {
+	text-align: right;
+	padding-right: 5px;
 }
 
 table {
@@ -126,6 +208,16 @@ table thead {
 }
 
 table thead td {
+	padding-left: 10px;	
+}
+
+table tfoot {
+	background-color: #2a2948;
+	color: white;
+	font-weight: bold;
+}
+
+table tfoot td {
 	padding-left: 10px;	
 }
 
@@ -153,29 +245,33 @@ table tbody tr.even {
 }
 /* errors and notice */
 
-#errors {
+.errors {
 	background-color: red;
-}
-
-#notice {
-	background-color: yellow;
+	color: white;
+	list-style: none;
 	text-align: center;
 }
-#notice p {
-	margin: 0 auto;
-	width: 750px;
-}
-#notice li {
-	list-style: none;
-	margin: 0 auto;
-	width: 750px;
-}
-#errors li {
+.errors li {
 	width: 750px;
 	color: white;
 	text-align: center;
 	list-style: none;
 	margin: 0 auto;
+}
+
+.notice {
+	background-color: yellow;
+	text-align: center;
+	list-style: none;
+}
+.notice p {
+	margin: 0 auto;
+	width: 750px;
+}
+.notice li {
+	list-style: none;
+	margin: 0 auto;
+	width: 750px;
 }
 
 #userInfo {
