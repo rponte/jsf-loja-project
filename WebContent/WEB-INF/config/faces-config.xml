@@ -77,6 +77,15 @@
 		</navigation-case>
 	</navigation-rule>
 	
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<redirect />
+			<from-outcome>carrinhoDeCompras</from-outcome>
+			<to-view-id>/pages/carrinho.jspx</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
 	<!--<navigation-rule>
 		<from-view-id>/pages/produto/lista.jspx</from-view-id>
 		<navigation-case>
