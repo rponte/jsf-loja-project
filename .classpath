@@ -14,8 +14,6 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
-	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="lib" path="lib/build/hamcrest-all-1.2RC3.jar"/>
 	<classpathentry kind="lib" path="lib/build/junit-4.5.jar"/>
 	<classpathentry kind="lib" path="lib/build/mockito-all-1.8.4.jar"/>
