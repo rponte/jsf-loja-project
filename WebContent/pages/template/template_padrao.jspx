@@ -14,7 +14,7 @@
 	
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-		<title>Loja da Cacarecos</title>
+		<title>Loja de Cacarecos</title>
 		<link href="#{ctx}/css/loja.css" rel="stylesheet" type="text/css" />
 		<!--  script type="text/javascript" src="#{ctx}/js/jquery-1.4.2.min.js"></script -->
 	</head>
