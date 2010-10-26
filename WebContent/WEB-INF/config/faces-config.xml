@@ -47,17 +47,6 @@
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
 	
-	<managed-bean>
-		<managed-bean-name>produtoBean</managed-bean-name>
-		<managed-bean-class>
-			br.com.minhaloja.controller.ProdutoBean
-		</managed-bean-class>
-		<managed-bean-scope>request</managed-bean-scope>
-		<managed-property>
-			<property-name>produtoService</property-name>
-			<value>#{produtoService}</value>
-		</managed-property>
-	</managed-bean>
 	-->
 	
 	<navigation-rule>
@@ -77,35 +66,4 @@
 		</navigation-case>
 	</navigation-rule>
 	
-	<navigation-rule>
-		<from-view-id>*</from-view-id>
-		<navigation-case>
-			<redirect />
-			<from-outcome>carrinhoDeCompras</from-outcome>
-			<to-view-id>/pages/carrinho.jspx</to-view-id>
-		</navigation-case>
-	</navigation-rule>
-	
-	<!--<navigation-rule>
-		<from-view-id>/pages/produto/lista.jspx</from-view-id>
-		<navigation-case>
-			<from-outcome>novo_produto</from-outcome>
-			<to-view-id>/pages/produto/novo.jspx</to-view-id>
-		</navigation-case>
-	</navigation-rule>
-	<navigation-rule>
-		<from-view-id>/pages/produto/*</from-view-id>
-		<navigation-case>
-			<from-outcome>lista_produtos</from-outcome>
-			<to-view-id>/pages/produto/lista.jspx</to-view-id>
-		</navigation-case>
-	</navigation-rule>
-	<navigation-rule>
-		<from-view-id>/pages/produto/lista.jspx</from-view-id>
-		<navigation-case>
-			<from-outcome>altera_produto</from-outcome>
-			<to-view-id>/pages/produto/altera.jspx</to-view-id>
-		</navigation-case>
-	</navigation-rule>
-
---></faces-config>
+	</faces-config>

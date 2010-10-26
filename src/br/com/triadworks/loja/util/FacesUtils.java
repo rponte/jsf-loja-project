@@ -1,7 +1,5 @@
 package br.com.triadworks.loja.util;
 
-import java.util.Iterator;
-
 import javax.faces.application.FacesMessage;
 import javax.faces.component.EditableValueHolder;
 import javax.faces.component.UIComponent;
@@ -32,17 +30,6 @@ public class FacesUtils {
 			new FacesMessage(FacesMessage.SEVERITY_INFO, msg, msg));
 	}
 
-	public boolean possuiMensagem(String msg) {
-		Iterator<FacesMessage> messages = facesContext.getMessages();
-		while (messages.hasNext()) {
-			FacesMessage message = messages.next();
-			boolean confere = message.getDetail().equals(msg);
-			if (confere)
-				return true;
-		}
-		return false;
-	}
-	
 	/**
 	 * Limpa os dados dos componentes de edição e de seus filhos,
 	 * recursivamente. Checa se o componente é instância de EditableValueHolder

@@ -15,13 +15,6 @@
 		</managed-bean-class>
 		<managed-bean-scope>application</managed-bean-scope>
 	</managed-bean>
+	-->
 	
-	<managed-bean>
-		<managed-bean-name>produtoService</managed-bean-name>
-		<managed-bean-class>
-			br.com.minhaloja.service.impl.ProdutoEmMemoriaService
-		</managed-bean-class>
-		<managed-bean-scope>application</managed-bean-scope>
-	</managed-bean>
-	
---></faces-config>
+</faces-config>
