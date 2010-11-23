@@ -31,7 +31,7 @@
 	<bean id="entityManagerFactory"
 		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
 
-		<property name="persistenceXmlLocation" value="classpath:/br/com/triadworks/loja/dao/jpa/persistence.xml"/>
+		<!-- property name="persistenceXmlLocation" value="classpath:/br/com/triadworks/loja/dao/jpa/persistence.xml"/ -->
 		<property name="dataSource" ref="dataSource"/>
 		
 		<property name="jpaDialect">
