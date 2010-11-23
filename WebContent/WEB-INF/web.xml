@@ -7,6 +7,13 @@
 	<display-name>Loja de Cacarecos</display-name>
 	
 	<!-- ******************************************************* -->
+	<!-- Configuração da ordem dos Servlet Filters -->
+	<!-- ******************************************************* -->
+	
+	<!-- OpenEntityManagerInViewFilter -->
+	<!-- Richfaces -->
+	
+	<!-- ******************************************************* -->
 	<!-- Configuração do Spring -->
 	<!-- ******************************************************* -->
 	
@@ -30,6 +37,28 @@
 			org.springframework.web.context.request.RequestContextListener
 		</listener-class>
 	</listener>
+	
+	<!-- Spring (Jpa Support) - OpenEntityManagerInViewFilter -->
+	<filter>
+		<description>
+			Necessário para o Lazy Loading funcionar quando as entidades
+			gerenciadas pelo EntityManager forem utilizadas em
+			ManagedBeans ou em JSPs.
+
+			Um bean com o id 'entityManagerFactory' precisa existir no
+			applicationContext.xml. Se precisar pode ser informado um
+			parâmetro no filtro para indicar qual o id do bean é o
+			EntityManagerFactory. (Ver documentação do Spring)
+		</description>
+		<filter-name>oemiv</filter-name>
+		<filter-class>
+			org.springframework.orm.jpa.support.OpenEntityManagerInViewFilter
+		</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>oemiv</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
 	
 	<!-- ******************************************************* -->
 	<!-- Configuracao do Richfaces -->
@@ -81,7 +110,7 @@
 		<param-name>javax.faces.STATE_SAVING_METHOD</param-name>
 		<param-value>server</param-value>
 	</context-param>
-	
+	<!-- Faces Servlet -->
 	<servlet>
 		<servlet-name>Faces Servlet</servlet-name>
 		<servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
@@ -91,5 +120,17 @@
 		<servlet-name>Faces Servlet</servlet-name>
 		<url-pattern>*.faces</url-pattern>
 	</servlet-mapping>
+	
+	<!-- ******************************************************* -->
+	<!-- Configuracao da App -->
+	<!-- ******************************************************* -->
+
+	<!-- Maneira mais simples de evitar o ViewExpiredException -->
+	<error-page>
+		<exception-type>
+			javax.faces.application.ViewExpiredException
+		</exception-type>
+		<location>/index.jsp</location>
+	</error-page>
 	
 </web-app>
