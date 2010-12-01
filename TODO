@@ -2,7 +2,6 @@ TODO
 --------------------------------------------------------------------------------
 
 * Criar build.xml;
-* Criar testes de integração com Spring, Hibernate e DBUnit;
 * Criar filtro de segurança (Servlet Filter);
 * Criar testes de aceitação com Selenium 2;
-* ...
+* Configurar Spring Security 3.x;
