@@ -18,5 +18,6 @@
 	<classpathentry kind="lib" path="lib/build/junit-4.5.jar"/>
 	<classpathentry kind="lib" path="lib/build/mockito-all-1.8.4.jar"/>
 	<classpathentry kind="lib" path="lib/build/dbunit-2.4.8.jar"/>
+	<classpathentry kind="lib" path="lib/build/org.springframework.test-3.0.2.RELEASE.jar"/>
 	<classpathentry kind="output" path="WebContent/WEB-INF/classes"/>
 </classpath>

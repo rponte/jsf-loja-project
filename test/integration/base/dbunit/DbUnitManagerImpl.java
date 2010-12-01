@@ -1,4 +1,4 @@
-package base;
+package base.dbunit;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -10,25 +10,29 @@ import java.sql.SQLException;
 import javax.sql.DataSource;
 
 import org.dbunit.DatabaseUnitException;
+import org.dbunit.database.DatabaseConfig;
 import org.dbunit.database.DatabaseConnection;
 import org.dbunit.database.IDatabaseConnection;
 import org.dbunit.dataset.DataSetException;
 import org.dbunit.dataset.IDataSet;
 import org.dbunit.dataset.xml.FlatXmlDataSet;
 import org.dbunit.dataset.xml.FlatXmlDataSetBuilder;
+import org.dbunit.ext.postgresql.PostgresqlDataTypeFactory;
 import org.dbunit.operation.DatabaseOperation;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
-
-public abstract class DbUnitManager {
+@Component("dbUnitManager")
+public class DbUnitManagerImpl implements DbUnitManager {
 
 	public static final String XML_COM_DADOS_BASICOS = "";
-	
 	DataSource dataSource;
 
-	public DbUnitManager(DataSource dataSource) {
+	@Autowired
+	public DbUnitManagerImpl(DataSource dataSource) {
 		this.dataSource = dataSource;
 	}
-
+	
 	public Connection getConnection() {
 		Connection conn;
 		try {
@@ -42,11 +46,6 @@ public abstract class DbUnitManager {
 		return conn;
 	}
 
-	/**
-	 * Atualiza o banco com os dados do arquivo xml, porém não altera os
-	 * registros anteriormente inseridos no banco e que não existem no arquivo
-	 * xml.
-	 */
 	public void refresh(String dbUnitXmlPath) {
 		try {
 			IDatabaseConnection dbconn = this.getDbUnitConnection();
@@ -58,9 +57,7 @@ public abstract class DbUnitManager {
 			throw new RuntimeException(e);
 		}
 	}
-	/**
-	 * Deleta todos os dados de cada tabela e em seguida insere os registros encontrados no arquivo xml.
-	 */
+
 	public void cleanAndInsert(String dbUnitXmlPath) {
 		try {
 			IDatabaseConnection dbconn = this.getDbUnitConnection();
@@ -72,9 +69,7 @@ public abstract class DbUnitManager {
 			throw new RuntimeException(e);
 		}
 	}
-	/**
-	 * Insere os dados encontrados no arquivo xml.
-	 */
+
 	public void insert(String dbUnitXmlPath) {
 		try {
 			IDatabaseConnection dbconn = this.getDbUnitConnection();
@@ -86,9 +81,7 @@ public abstract class DbUnitManager {
 			throw new RuntimeException(e);
 		}
 	}
-	/**
-	 * Atualiza os registros encontrados no arquivo xml.
-	 */
+
 	public void update(String dbUnitXmlPath) {
 		try {
 			IDatabaseConnection dbconn = this.getDbUnitConnection();
@@ -100,9 +93,7 @@ public abstract class DbUnitManager {
 			throw new RuntimeException(e);
 		}
 	}
-	/**
-	 * Deleta os registros encontrados no arquivo xml.
-	 */
+
 	public void delete(String dbUnitXmlPath) {
 		try {
 			IDatabaseConnection dbconn = this.getDbUnitConnection();
@@ -114,9 +105,7 @@ public abstract class DbUnitManager {
 			throw new RuntimeException(e);
 		}
 	}
-	/**
-	 * Deleta todos os dados de cada tabela encontrada no arquivo xml.
-	 */
+
 	public void deleteAll(String dbUnitXmlPath) {
 		try {
 			IDatabaseConnection dbconn = this.getDbUnitConnection();
@@ -128,9 +117,7 @@ public abstract class DbUnitManager {
 			throw new RuntimeException(e);
 		}
 	}
-	/**
-	 * Limpa o banco e popula apenas com os dados básicos.
-	 */
+
 	public void clear() {
 		try {
 			IDatabaseConnection dbconn = this.getDbUnitConnection();
@@ -144,15 +131,16 @@ public abstract class DbUnitManager {
 
 	private IDataSet getDataSetFrom(String dbUnitXmlPath) throws IOException,
 			DataSetException, FileNotFoundException {
-		FlatXmlDataSetBuilder builder = new FlatXmlDataSetBuilder();
-//		builder.setColumnSensing(true);
-		IDataSet dataSet = builder.build(new FileInputStream(dbUnitXmlPath));
-		return dataSet;
+		return new FlatXmlDataSetBuilder().build(new FileInputStream(dbUnitXmlPath));
 	}
 
-	/**
-	 * Gera o dump do banco e salva o dataset em <code>dbUnitXmlPath</code>.
-	 */
+	private IDatabaseConnection getDbUnitConnection()
+			throws DatabaseUnitException, SQLException {
+		IDatabaseConnection dbconn = new DatabaseConnection(this.getConnection());
+		dbconn.getConfig().setProperty(DatabaseConfig.PROPERTY_DATATYPE_FACTORY, new PostgresqlDataTypeFactory());
+		return dbconn;
+	}
+
 	public void dump(String dbUnitXmlPath) {
 		try {
 			IDatabaseConnection connection = new DatabaseConnection(
@@ -167,10 +155,8 @@ public abstract class DbUnitManager {
 	public DataSource getDataSource() {
 		return dataSource;
 	}
-	
-	/**
-	 * Deve ser implementado de acordo com o tipo de banco de dados.
-	 */
-	public abstract IDatabaseConnection getDbUnitConnection() throws DatabaseUnitException, SQLException;
 
+	public void setDataSource(DataSource dataSource) {
+		this.dataSource = dataSource;
+	}
 }

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+	<produto codigo="9997" nome="Livro Domain-Driven Design" descricao="Livro Domain-Driven Design" preco="89.99" />
+	<produto codigo="9998" nome="Boneco do Comandos em Ação" descricao="Boneco do Comandos em Ação" preco="49.90" />
+	<produto codigo="9999" nome="TV de Plasma 42'" descricao="TV de Plasma 42' - HD" preco="4299.00" />
+</dataset>
