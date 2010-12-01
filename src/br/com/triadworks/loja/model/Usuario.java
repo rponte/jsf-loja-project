@@ -3,7 +3,6 @@ package br.com.triadworks.loja.model;
 import java.io.Serializable;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
@@ -12,10 +11,8 @@ public class Usuario implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@GeneratedValue
-	private Long codigo;
-	private String nome;
 	private String login;
+	private String nome;
 	private String senha;
 	
 	public Usuario() {}
@@ -25,12 +22,6 @@ public class Usuario implements Serializable {
 		this.senha = senha;
 	}
 	
-	public Long getCodigo() {
-		return codigo;
-	}
-	public void setCodigo(Long codigo) {
-		this.codigo = codigo;
-	}
 	public String getNome() {
 		return nome;
 	}
