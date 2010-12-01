@@ -23,7 +23,7 @@
 		<!-- Postgres configutarion -->
 		<property name="driverClass" value="org.postgresql.Driver" />
 		<property name="jdbcUrl" value="jdbc:postgresql://127.0.0.1:5432/loja" />
-    	<property name="user" value="postgres" />
+    		<property name="user" value="postgres" />
 		<property name="password" value="1234" />
 	</bean>
     
