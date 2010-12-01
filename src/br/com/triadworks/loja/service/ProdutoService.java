@@ -14,7 +14,7 @@ public interface ProdutoService {
 
 	public Produto carrega(Long codigo);
 
-	public void altera(Produto produto);
+	public void atualiza(Produto produto);
 
 	public List<Produto> busca(String nome);
 

@@ -26,7 +26,7 @@ public class ProdutoServiceImpl implements ProdutoService {
 		entityManager.persist(produto);
 	}
 
-	public void altera(Produto produto) {
+	public void atualiza(Produto produto) {
 		entityManager.merge(produto);
 	}
 

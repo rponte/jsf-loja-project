@@ -65,7 +65,7 @@ public class ProdutoBean {
 	}
 	
 	public void altera() {
-		produtoService.altera(produto);
+		produtoService.atualiza(produto);
 		facesUtils.adicionaMensagemDeInformacao("Produto alterado com sucesso!");
 		lista();
 	}

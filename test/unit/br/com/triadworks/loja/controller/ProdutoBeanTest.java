@@ -87,7 +87,7 @@ public class ProdutoBeanTest {
 		
 		controller.altera();
 		
-		verify(produtoService).altera(controller.getProduto());
+		verify(produtoService).atualiza(controller.getProduto());
 		verify(facesUtils).adicionaMensagemDeInformacao("Produto alterado com sucesso!");
 		Assert.assertTrue("pesquisando", controller.isPesquisando());
 	}
