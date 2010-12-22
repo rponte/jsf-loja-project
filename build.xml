@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding='UTF-8' ?>
 <project name="Jsf-Loja-Project" basedir="." default="all">
 	<property file="build.properties" />
+	
 	<path id="classpath">
-		<fileset dir="${lib.dir}/build">
+		<fileset dir="${lib.dir}">
 			<include name="**/*.jar" />
 		</fileset>
 		<!--
