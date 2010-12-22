@@ -1,7 +1,6 @@
 TODO
 --------------------------------------------------------------------------------
 
-* Criar build.xml;
 * Criar filtro de segurança (Servlet Filter);
 * Criar testes de aceitação com Selenium 2;
 * Configurar Spring Security 3.x;
