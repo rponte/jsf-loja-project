@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding='UTF-8' ?>
+<project name="Jsf-Loja-Project" basedir="." default="all">
+	<property file="build.properties" />
+	<path id="classpath">
+		<fileset dir="${lib.dir}/build">
+			<include name="**/*.jar" />
+		</fileset>
+		<!--
+		<fileset dir="${target.jar.dir}">
+			<include name="**/*.jar" />
+		</fileset>
+		-->
+	</path>
+	
+	<path id="webinf-classpath">
+		<fileset dir="${webroot.dir}/WEB-INF/lib">
+			<include name="**/*.jar" />
+		</fileset>
+	</path>
+	
+	<path id="build-classpath">
+		<fileset dir="${lib.dir}/build">
+			<include name="*.jar" />
+		</fileset>
+	</path>
+	
+	<target name="clean">
+		<delete dir="${default.target.dir}" />
+		<mkdir dir="${test.classes.dir}" />
+		<mkdir dir="${classes.dir}" />
+		<mkdir dir="${war.dir}" />
+	</target>
+	
+	<target name="compile" depends="clean">
+		<!-- Compila App classes -->
+		<copy todir="${classes.dir}">
+			<fileset dir="${source.dir}" excludes="**/*.java" />
+		</copy>
+		<javac destdir="${classes.dir}" srcdir="${source.dir}" debug="true" debuglevel="vars,lines,source"
+			source="1.5" target="1.5" encoding="UTF-8">
+			<classpath>
+				<path refid="webinf-classpath" />
+			</classpath>
+		</javac>
+		<!-- Compila Test classes -->
+		<copy todir="${test.classes.dir}">
+			<fileset dir="${test.source.dir}" excludes="**/*.java" />
+		</copy>
+		<javac destdir="${test.classes.dir}" srcdir="${test.source.dir}" debug="true" debuglevel="vars,lines,source"
+			source="1.5" target="1.5" encoding="UTF-8">
+			<classpath>
+				<path refid="classpath" />
+				<path refid="webinf-classpath" />
+				<path refid="build-classpath" />
+				<pathelement path="${classes.dir}" />
+			</classpath>
+		</javac>
+		
+	</target>
+	
+	<path id="cobertura.classpath">
+		<fileset dir="${cobertura.dir}">
+			<include name="cobertura.jar" />
+			<include name="lib/**/*.jar" />
+		</fileset>
+	</path>
+	
+	<taskdef classpathref="cobertura.classpath" resource="tasks.properties"/>
+	
+	<target name="instrument" depends="compile">
+		<mkdir dir="${instrumented.dir}" />
+		<mkdir dir="${coverage.xml.dir}" />
+		<cobertura-instrument datafile="${coverage.xml.dir}/cobertura.ser" todir="${instrumented.dir}">
+			<ignore regex="org.apache.log4j.*" />
+			<fileset dir="${classes.dir}">
+				<include name="**/*.class" />
+				<exclude name="**/*Test.class" />
+			</fileset>
+		</cobertura-instrument>
+	</target>
+	
+	<target name="test" depends="instrument">
+		<mkdir dir="${test.report.dir}" />
+		<junit printsummary="on" fork="yes" forkmode="once" haltonfailure="true" haltonerror="true">
+			<sysproperty key="net.sourceforge.cobertura.datafile" file="${coverage.xml.dir}/cobertura.ser" />
+			<sysproperty key="basedir" value="." />
+			<formatter type="xml" />
+			<classpath>
+				<!-- Adiciona libs necessarias para o build -->
+				<path refid="build-classpath" />
+				<!-- Adiciona libs da App -->
+				<path refid="webinf-classpath"></path>
+				<!-- Cobertura -->
+				<fileset dir="${cobertura.dir}">
+					<include name="cobertura.jar" />
+				</fileset>
+				<!-- Classpaths -->
+				<pathelement path="${instrumented.dir}" />
+				<pathelement path="${classes.dir}" />
+				<pathelement path="${test.classes.dir}" />
+			</classpath>
+			<test name="${testcase}" todir="${test.report.dir}" if="testcase" />
+			<batchtest todir="${test.report.dir}"  unless="testcase">
+				<!-- Unit Tests -->
+				<fileset dir="${test.source.dir}/unit">
+					<include name="${test.pattern}" />
+				</fileset>
+				<!-- Integration Tests -->
+				<fileset dir="${test.source.dir}/integration">
+					<include name="${test.pattern}" />
+				</fileset>
+			</batchtest>
+		</junit>
+	</target>
+	
+	<target name="coverage-check">
+		<cobertura-check branchrate="34" totallinerate="100" />
+	</target>
+	
+	<target name="coverage" depends="test">
+		<cobertura-report datafile="${coverage.xml.dir}/cobertura.ser" 
+			srcdir="${source.dir}" destdir="${coverage.xml.dir}" format="xml" />
+	</target>
+	
+	<target name="war" description="create war file" depends="coverage">
+		<war destfile="${war.file}" webxml="${webroot.dir}/WEB-INF/web.xml">
+			<classes dir="${classes.dir}" />
+			<lib dir="${webroot.dir}/WEB-INF/lib"></lib>
+			<fileset dir="${webroot.dir}/">
+				<include name="js/**"/>
+				<include name="css/**"/>
+				<include name="images/**"/>
+				<include name="META-INF/**"/>
+				<include name="pages/**"/>
+				<include name="*.jsp" />
+				<include name="*.jspx" />
+				<include name="*.html" />
+				<include name="*.xhtml" />
+			</fileset>
+			<zipfileset dir="${webroot.dir}/WEB-INF/config" 
+				prefix="WEB-INF/config" excludes="**/*-test.xml" />
+		</war>
+	</target>
+	
+	<!--target name="all" depends="deploy"-->
+	<target name="all" depends="war">
+		<delete dir="${test.classes.dir}" />
+		<delete dir="${classes.dir}" />
+	</target>
+
+</project>
