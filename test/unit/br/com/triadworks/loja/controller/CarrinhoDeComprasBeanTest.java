@@ -40,8 +40,9 @@ public class CarrinhoDeComprasBeanTest {
 		// given
 		dadoQueUsuarioSelecionou(produto("Clean Code Book", noValorDe("89.90")), quantidade(2));
 		// when
-		controller.adiciona();
+		String outcome = controller.adiciona();
 		// then
+		assertEquals("outcome", "carrinhoDeCompras", outcome);
 		assertEquals("valor total no carrinho", new BigDecimal("179.80"), carrinho.getTotal());
 		assertEquals("total de itens no carrinho", 1, carrinho.getTotalDeItens());
 	}
@@ -52,8 +53,9 @@ public class CarrinhoDeComprasBeanTest {
 		dadoQueCarrinhoJaPossuiDoisProdutos();
 		dadoQueUsuarioQueiraRemoverItemDoCarrinhoComIndice(1);
 		// when
-		controller.remove();
+		String outcome = controller.remove();
 		// then
+		assertEquals("outcome", "carrinhoDeCompras", outcome);
 		assertEquals("valor total no carrinho", new BigDecimal("100.00"), carrinho.getTotal());
 		assertEquals("total de itens no carrinho", 1, carrinho.getTotalDeItens());
 	}
