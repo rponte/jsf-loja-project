@@ -39,6 +39,26 @@ public class ProdutoServiceImplTest {
 	}
 	
 	@Test
+	public void deveriaEncontrarNenhumProdutoQuandoBuscaForVaziaOuNula() {
+		assertTrue("busca vazia", service.busca("").isEmpty());
+		assertTrue("busca nula", service.busca(null).isEmpty());
+	}
+	
+	@Test
+	public void deveriaBuscarProdutosPorNomeSemCaseSensitive() {
+		List<Produto> produtos = service.busca("boNeCo");
+		assertEquals("numero de registros encontrados", 1, produtos.size());
+		verificaProduto(produtos.get(0), "Boneco do Comandos em Ação", "Boneco do Comandos em Ação", new BigDecimal("49.90"));
+	}
+	
+	@Test
+	public void deveriaBuscarProdutosPorNome() {
+		List<Produto> produtos = service.busca("Domain-Driven Design");
+		assertEquals("numero de registros encontrados", 1, produtos.size());
+		verificaProduto(produtos.get(0), "Livro Domain-Driven Design", "Livro Domain-Driven Design", new BigDecimal("89.99"));
+	}
+	
+	@Test
 	public void deveriaBuscarPorId() {
 		assertNull("não encontra produto", service.carrega(ID_INVALIDO));
 		assertNotNull("encontra produto", service.carrega(ID_VALIDO));
