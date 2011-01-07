@@ -49,8 +49,7 @@ public class FacesUtilsTest {
 		// quando
 		facesUtils.cleanSubmittedValues(form);
 		// entao
-		assertTrue("form ainda com componente filho", form.getChildCount() > 0);
-		assertEquals("quantidade de componentes filhos", 1, form.getChildren().size());
+		assertEquals("form ainda com componente filho", 1, form.getChildren().size());
 		assertQueComponenteFilhoEstejaLimpo(form.getChildren().get(0));
 	}
 
