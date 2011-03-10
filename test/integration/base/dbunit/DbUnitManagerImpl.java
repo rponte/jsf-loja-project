@@ -35,7 +35,7 @@ public class DbUnitManagerImpl implements DbUnitManager {
 		this.dataSource = dataSource;
 	}
 	
-	public Connection getConnection() {
+	private Connection getConnection() {
 		Connection conn;
 		try {
 			conn = dataSource.getConnection();
