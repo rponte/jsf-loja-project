@@ -104,20 +104,15 @@ public class DbUnitManagerImpl implements DbUnitManager {
 
 	public void dump(String dbUnitXmlPath) {
 		try {
-			IDatabaseConnection connection = new DatabaseConnection(
-					getConnection());
-			IDataSet iDataSet = connection.createDataSet();
+			IDatabaseConnection dbconn = getDbUnitConnection();
+			IDataSet iDataSet = dbconn.createDataSet();
+			// se for necessário ordenar devido as constraints - demora pacas
+			// iDataSet = new FilteredDataSet(new DatabaseSequenceFilter(dbconn), iDataSet); 
 			FlatXmlDataSet.write(iDataSet, new FileOutputStream(dbUnitXmlPath));
 		} catch (Exception e) {
 			e.printStackTrace();
+			throw new RuntimeException(e);
 		}
 	}
 
-	public DataSource getDataSource() {
-		return dataSource;
-	}
-
-	public void setDataSource(DataSource dataSource) {
-		this.dataSource = dataSource;
-	}
 }
