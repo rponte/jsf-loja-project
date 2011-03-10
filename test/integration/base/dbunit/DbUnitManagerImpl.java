@@ -1,5 +1,7 @@
 package base.dbunit;
 
+import static org.dbunit.operation.DatabaseOperation.*;
+
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -45,88 +47,47 @@ public class DbUnitManagerImpl implements DbUnitManager {
 		}
 		return conn;
 	}
-
-	public void refresh(String dbUnitXmlPath) {
+	
+	/**
+	 * Executa operações do DBUnit no dataset <code>dbUnitXmlPath</code>.
+	 */
+	protected void execute(DatabaseOperation operation, String dbUnitXmlPath) {
 		try {
 			IDatabaseConnection dbconn = this.getDbUnitConnection();
-			DatabaseOperation.CLEAN_INSERT.execute(dbconn, this
-					.getDataSetFrom(dbUnitXmlPath));
+			operation.execute(dbconn, this.getDataSetFrom(dbUnitXmlPath));
 			dbconn.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new RuntimeException(e);
 		}
+	}
+
+	public void refresh(String dbUnitXmlPath) {
+		execute(REFRESH, dbUnitXmlPath);
 	}
 
 	public void cleanAndInsert(String dbUnitXmlPath) {
-		try {
-			IDatabaseConnection dbconn = this.getDbUnitConnection();
-			DatabaseOperation.CLEAN_INSERT.execute(dbconn, this
-					.getDataSetFrom(dbUnitXmlPath));
-			dbconn.close();
-		} catch (Exception e) {
-			e.printStackTrace();
-			throw new RuntimeException(e);
-		}
+		execute(CLEAN_INSERT, dbUnitXmlPath);
 	}
 
 	public void insert(String dbUnitXmlPath) {
-		try {
-			IDatabaseConnection dbconn = this.getDbUnitConnection();
-			DatabaseOperation.INSERT.execute(dbconn, this
-					.getDataSetFrom(dbUnitXmlPath));
-			dbconn.close();
-		} catch (Exception e) {
-			e.printStackTrace();
-			throw new RuntimeException(e);
-		}
+		execute(INSERT, dbUnitXmlPath);
 	}
 
 	public void update(String dbUnitXmlPath) {
-		try {
-			IDatabaseConnection dbconn = this.getDbUnitConnection();
-			DatabaseOperation.UPDATE.execute(dbconn, this
-					.getDataSetFrom(dbUnitXmlPath));
-			dbconn.close();
-		} catch (Exception e) {
-			e.printStackTrace();
-			throw new RuntimeException(e);
-		}
+		execute(UPDATE, dbUnitXmlPath);
 	}
 
 	public void delete(String dbUnitXmlPath) {
-		try {
-			IDatabaseConnection dbconn = this.getDbUnitConnection();
-			DatabaseOperation.DELETE.execute(dbconn, this
-					.getDataSetFrom(dbUnitXmlPath));
-			dbconn.close();
-		} catch (Exception e) {
-			e.printStackTrace();
-			throw new RuntimeException(e);
-		}
+		execute(DELETE, dbUnitXmlPath);
 	}
 
 	public void deleteAll(String dbUnitXmlPath) {
-		try {
-			IDatabaseConnection dbconn = this.getDbUnitConnection();
-			DatabaseOperation.DELETE_ALL.execute(dbconn, this
-					.getDataSetFrom(dbUnitXmlPath));
-			dbconn.close();
-		} catch (Exception e) {
-			e.printStackTrace();
-			throw new RuntimeException(e);
-		}
+		execute(DELETE_ALL, dbUnitXmlPath);
 	}
 
 	public void clear() {
-		try {
-			IDatabaseConnection dbconn = this.getDbUnitConnection();
-			DatabaseOperation.CLEAN_INSERT.execute(dbconn, getDataSetFrom(XML_COM_DADOS_BASICOS));
-			dbconn.close();
-		} catch (Exception e) {
-			e.printStackTrace();
-			throw new RuntimeException(e);
-		}
+		execute(CLEAN_INSERT, XML_COM_DADOS_BASICOS);
 	}
 
 	private IDataSet getDataSetFrom(String dbUnitXmlPath) throws IOException,
