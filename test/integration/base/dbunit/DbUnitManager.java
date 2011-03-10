@@ -1,7 +1,5 @@
 package base.dbunit;
 
-import java.sql.Connection;
-
 public interface DbUnitManager {
 
 	/**
@@ -9,43 +7,41 @@ public interface DbUnitManager {
 	 * registros anteriormente inseridos no banco e que não existem no arquivo
 	 * xml.
 	 */
-	public abstract void refresh(String dbUnitXmlPath);
+	public void refresh(String dbUnitXmlPath);
 
 	/**
 	 * Deleta todos os dados de cada tabela e em seguida insere os registros encontrados no arquivo xml.
 	 */
-	public abstract void cleanAndInsert(String dbUnitXmlPath);
+	public void cleanAndInsert(String dbUnitXmlPath);
 
 	/**
 	 * Insere os dados encontrados no arquivo xml.
 	 */
-	public abstract void insert(String dbUnitXmlPath);
+	public void insert(String dbUnitXmlPath);
 
 	/**
 	 * Atualiza os registros encontrados no arquivo xml.
 	 */
-	public abstract void update(String dbUnitXmlPath);
+	public void update(String dbUnitXmlPath);
 
 	/**
 	 * Deleta os registros encontrados no arquivo xml.
 	 */
-	public abstract void delete(String dbUnitXmlPath);
+	public void delete(String dbUnitXmlPath);
 
 	/**
 	 * Deleta todos os dados de cada tabela encontrada no arquivo xml.
 	 */
-	public abstract void deleteAll(String dbUnitXmlPath);
+	public void deleteAll(String dbUnitXmlPath);
 
 	/**
 	 * Limpa o banco e popula apenas com os dados básicos.
 	 */
-	public abstract void clear();
+	public void clear();
 
 	/**
 	 * Gera dataset do banco de dados.
 	 */
-	public abstract void dump(String dbUnitXmlPath);
-
-	public Connection getConnection();
+	public void dump(String dbUnitXmlPath);
 
 }
