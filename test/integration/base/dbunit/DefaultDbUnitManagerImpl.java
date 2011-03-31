@@ -1,6 +1,11 @@
 package base.dbunit;
 
-import static org.dbunit.operation.DatabaseOperation.*;
+import static org.dbunit.operation.DatabaseOperation.CLEAN_INSERT;
+import static org.dbunit.operation.DatabaseOperation.DELETE;
+import static org.dbunit.operation.DatabaseOperation.DELETE_ALL;
+import static org.dbunit.operation.DatabaseOperation.INSERT;
+import static org.dbunit.operation.DatabaseOperation.REFRESH;
+import static org.dbunit.operation.DatabaseOperation.UPDATE;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -12,30 +17,28 @@ import java.sql.SQLException;
 import javax.sql.DataSource;
 
 import org.dbunit.DatabaseUnitException;
-import org.dbunit.database.DatabaseConfig;
 import org.dbunit.database.DatabaseConnection;
 import org.dbunit.database.IDatabaseConnection;
 import org.dbunit.dataset.DataSetException;
 import org.dbunit.dataset.IDataSet;
 import org.dbunit.dataset.xml.FlatXmlDataSet;
 import org.dbunit.dataset.xml.FlatXmlDataSetBuilder;
-import org.dbunit.ext.postgresql.PostgresqlDataTypeFactory;
 import org.dbunit.operation.DatabaseOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component("dbUnitManager")
-public class DbUnitManagerImpl implements DbUnitManager {
+public class DefaultDbUnitManagerImpl implements DbUnitManager {
 
 	public static final String XML_COM_DADOS_BASICOS = "";
 	DataSource dataSource;
 
 	@Autowired
-	public DbUnitManagerImpl(DataSource dataSource) {
+	public DefaultDbUnitManagerImpl(DataSource dataSource) {
 		this.dataSource = dataSource;
 	}
 	
-	private Connection getConnection() {
+	protected Connection getConnection() {
 		Connection conn;
 		try {
 			conn = dataSource.getConnection();
@@ -95,10 +98,13 @@ public class DbUnitManagerImpl implements DbUnitManager {
 		return new FlatXmlDataSetBuilder().build(new FileInputStream(dbUnitXmlPath));
 	}
 
-	private IDatabaseConnection getDbUnitConnection()
+	/**
+	 * Instancia, configura e retorna um <code>IDatabaseConnection</code> a
+	 * partir de uma conexão Jdbc.
+	 */
+	protected IDatabaseConnection getDbUnitConnection()
 			throws DatabaseUnitException, SQLException {
 		IDatabaseConnection dbconn = new DatabaseConnection(this.getConnection());
-		dbconn.getConfig().setProperty(DatabaseConfig.PROPERTY_DATATYPE_FACTORY, new PostgresqlDataTypeFactory());
 		return dbconn;
 	}
 
