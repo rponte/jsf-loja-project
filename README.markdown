@@ -1,7 +1,7 @@
 JSF Loja Project
 =========================
 
-Projeto simples de uma aplicação de Loja Virtual com `JSF 1.2`, `Spring 3.x` e `Hibernate 3.5.x`; O projeto é construído durante os cursos e treinamentos de **JSF 1.2, Spring e Hibernate** ministrados pela [TriadWorks](http://www.triadworks.com.br).
+Projeto simples de uma aplicação de Loja Virtual com `JSF 1.2`, `Spring 3.x` e `Hibernate 3.5.x`. O projeto é construído durante os cursos e treinamentos de **JSF 1.2, Spring e Hibernate** ministrados pela [TriadWorks](http://www.triadworks.com.br).
 
 Caso tenha interesse ou alguma dúvida nos nossos cursos e treinamentos, por favor, [deixe-nos saber](http://www.triadworks.com.br/contatos.html).
 
