@@ -32,6 +32,8 @@ Gerando .war da aplicação
 Informações adicionais
 ------------------------
 
+* O schema do banco de dados será criado pelo `Hibernate` ao iniciar a aplicação pela primeira vez;
+* O schema do banco de dados de testes, `loja_test`, será criado pelo `Hibernate` ao iniciar a aplicação pela primeira vez;
 * Os diretórios de _source_ `/test/unit` e `/test/integration` possuem as classes de testes automatizados; 
 * Dentro do diretório `/etc/lib/app` você encontra todas as libs e dependências organizadas de cada framework;
 * Dentro do diretório `/etc/lib/app/jdbc` é possível encontrar alguns drivers já disponíveis, como `MySQL` e `PostgreSQL`;
