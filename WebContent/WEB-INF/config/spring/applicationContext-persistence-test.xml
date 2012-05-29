@@ -17,15 +17,17 @@
 	<!-- Configuração do DataSource de Teste -->
 	<!-- ********************************************* -->
 	
+	<context:property-placeholder location="file:test/integration/jdbc-test.properties"/>
+	
 	<!-- Adiciona DBUnitManager -->
 	<context:component-scan base-package="base.dbunit" />
 	 
 	 <bean id="dataSource"
 		class="org.springframework.jdbc.datasource.SingleConnectionDataSource" >
-		<property name="driverClassName" value="org.postgresql.Driver" />
-		<property name="url" value="jdbc:postgresql://127.0.0.1:5432/loja" />
-		<property name="username" value="postgres" />
-		<property name="password" value="1234" />
+		<property name="driverClassName" value="${jdbc.driverClassName}" />
+		<property name="url" value="${jdbc.url}" />
+		<property name="username" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />
 		<property name="suppressClose" value="true" />
 	 </bean>
 	 

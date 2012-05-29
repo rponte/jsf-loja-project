@@ -6,11 +6,6 @@
 		<fileset dir="${lib.dir}">
 			<include name="**/*.jar" />
 		</fileset>
-		<!--
-		<fileset dir="${target.jar.dir}">
-			<include name="**/*.jar" />
-		</fileset>
-		-->
 	</path>
 	
 	<path id="webinf-classpath">

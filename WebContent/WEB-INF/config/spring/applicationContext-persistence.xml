@@ -16,15 +16,20 @@
 	<!-- ********************************************* -->
 	<!-- Configuração do DataSource -->
 	<!-- ********************************************* -->
+
+	<context:property-placeholder location="classpath:jdbc.properties"/>
 	 
     <bean id="dataSource"
 		class="com.mchange.v2.c3p0.ComboPooledDataSource"
 		destroy-method="close">
-		<!-- Postgres configutarion -->
-		<property name="driverClass" value="org.postgresql.Driver" />
-		<property name="jdbcUrl" value="jdbc:postgresql://127.0.0.1:5432/loja" />
-    		<property name="user" value="postgres" />
-		<property name="password" value="1234" />
+		<property name="driverClass" value="${jdbc.driverClassName}" />
+		<property name="jdbcUrl" value="${jdbc.url}" />
+    		<property name="user" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />
+		<property name="initialPoolSize" value="3" />
+		<property name="minPoolSize" value="6" />
+		<property name="maxPoolSize" value="20" />
+		<property name="acquireIncrement" value="3" />
 	</bean>
     
 	<!-- Configuraçãoes relativas a acesso a dados -->
@@ -49,7 +54,7 @@
 				<prop key="hibernate.format_sql">true</prop>
 				<prop key="hibernate.query.substitutions">true 'S',false 'N',yes 'S',no 'N'</prop>
 				<prop key="hibernate.query.jpaql_strict_compliance">true</prop>
-				<prop key="hibernate.hbm2ddl.auto">validate</prop> <!-- create | create-drop | validate | update -->
+				<prop key="hibernate.hbm2ddl.auto">update</prop> <!-- create | create-drop | validate | update -->
 			</props>
 		</property>
 	</bean>
