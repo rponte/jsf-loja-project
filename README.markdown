@@ -17,7 +17,7 @@ Os passos básicos são:
 3. Configure as informações do banco no arquivo `src/jdbc.properties`;
 4. Crie o banco de dados `loja` e `loja_test` com a ferramenta de sua preferência (como o `PGAdmin`, no caso do `PostgreSQL`);
 5. Faça o deploy no `Apache Tomcat 6.x` e inicie o servidor;
-6. Insria um novo usuário (tabela `USUARIO`) no banco para que seja possível logar na aplicação;
+6. Insria um novo usuário no banco (tabela `USUARIO`) para que seja possível logar na aplicação;
 7. Acesse a aplicação através da url [http://localhost:8080/loja](http://localhost:8080/loja) ;
 8. Faça o login com o usuário criado;
 
